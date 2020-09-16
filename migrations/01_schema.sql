@@ -36,7 +36,7 @@ create table reservations (
   id serial primary key NOT NULL,
   start_date date NOT NULL,
   end_date date NOT NULL,
-  propery_id integer REFERENCES properties(id) ON DELETE CASCADE,
+  property_id integer REFERENCES properties(id) ON DELETE CASCADE,
   guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -44,7 +44,7 @@ create table reservations (
 create table property_reviews (
   id serial primary key NOT NULL,
   guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  propery_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
+  property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
   reservation_id INTEGER REFERENCES reservations(id) ON DELETE CASCADE,
   rating SMALLINT NOT NULL DEFAULT 0,
   message text
