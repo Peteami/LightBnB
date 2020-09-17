@@ -26,7 +26,9 @@ module.exports = function(router, database) {
   const login =  function(email, password) {
     return database.getUserWithEmail(email)
     .then(user => {
+      console.log('in login', bcrypt.compareSync(password, user.password));
       if (bcrypt.compareSync(password, user.password)) {
+        console.log('something');
         return user;
       }
       return null;
@@ -38,6 +40,7 @@ module.exports = function(router, database) {
     const {email, password} = req.body;
     login(email, password)
       .then(user => {
+        console.log('in route', user);
         if (!user) {
           res.send({error: "error"});
           return;
